@@ -28,19 +28,26 @@ public:
 };
 
 //Top Solution
-class Solution
-{
+static int x=[](){
+    std::ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    return 0;
+}();
+
+class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target)
-    {
-        unordered_map <int, int> vtoi = {};
-        for (int i=0; i<nums.size(); i++)
-        {
-            if (vtoi.find(target-nums[i])!=vtoi.end())
-            {
-                return vector <int> ({vtoi[target-nums[i]],i});
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int,int> m;
+        vector<int> res(2,-1);
+        for(int i=0;i<nums.size();i++){
+            int delta = target-nums[i];
+            if(m.find(delta)!=m.end()){
+                res[0]=m[delta];
+                res[1]=i;
+                return res;
             }
-            vtoi[nums[i]]=i;
+            m[nums[i]]=i;
         }
+        return res;
     }
 };
